@@ -1,0 +1,88 @@
+#include<IRremote.h>
+
+IRsend irsend;
+#define TOPBIT 0x8000000
+
+unsigned long data1=0x804B7F8;
+unsigned long data11=0xE01A80F;
+unsigned long data2=0x80437F8;
+unsigned long data21=0xE09A80F;
+unsigned long data3=0x804F7F8;
+unsigned long data31=0xE01A803;
+
+  
+// the setup function runs once when you press reset or power the board
+void setup() 
+{
+  //Serial.begin(9600);
+}
+
+// the loop function runs over and over again until power down or reset
+void loop() 
+{ 
+  sendData(data1,data11);
+  delay(5000);
+  sendData(data2,data21);
+  delay(5000);
+  sendData(data3,data31);
+  irsend.space(2800);
+  sendData(data3,data31);
+  delay(5000);
+  //Serial.println();
+}
+
+void sendData(unsigned long data0,unsigned long data01)
+{
+  //unsigned long data0=data;
+  irsend.enableIROut(38);
+  irsend.mark(3100);
+  irsend.space(8900);
+  for (int i = 0; i < 28; i++) {
+    if (data0 & TOPBIT) {
+      //Serial.print("600 -1400 ");
+      irsend.mark(600);  
+      irsend.space(1400);  
+    } 
+    else {
+      //Serial.print("600 -400 ");
+      irsend.mark(600);
+      irsend.space(400);  
+    }
+    data0 <<= 1;
+  }
+  for (int i = 0; i < 28; i++) {
+    if (data01 & TOPBIT) {
+      //Serial.print("600 -1400 ");
+      irsend.mark(600);  
+      irsend.space(1400);  
+    } 
+    else {
+      //Serial.print("600 -400 ");
+      irsend.mark(600);
+      irsend.space(400);  
+    }
+    data01 <<= 1;
+  }
+  //Serial.print("600");
+  irsend.mark(600);
+  irsend.space(0);
+  /*irsend.space(2800);
+  irsend.mark(3100);
+  irsend.space(8900);
+  
+  for (int i = 0; i < 56; i++) {
+    if (data0 & TOPBIT) {
+      Serial.print("1");
+      irsend.mark(600);  
+      irsend.space(1400);  
+    } 
+    else {
+      Serial.print("0");
+      irsend.mark(600);
+      irsend.space(400);  
+    }
+    data0 <<= 1;
+  }
+  irsend.mark(600);
+  irsend.space(0);*/
+}
