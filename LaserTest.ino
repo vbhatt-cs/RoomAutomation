@@ -41,9 +41,9 @@ void loop()
     pattern+=ldrCur2;
     int index1=pattern.indexOf("01111000");
     int index2=pattern.indexOf("10110100");
-    if(index1>-1 && index1%2==0)  //Entering pattern
+    if(index1>-1 && index1%2==0 && pattern[0]=='0')  //Entering pattern
       Serial.println("Entered");
-    if(index2>-1 && index2%2==0)  //Exiting pattern
+    if(index2>-1 && index2%2==0 && pattern[0]=='1')  //Exiting pattern
       Serial.println("Exited");
   }
   if(ldrCur1=='0' && ldrCur2=='0')
