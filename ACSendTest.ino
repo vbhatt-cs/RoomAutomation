@@ -3,13 +3,20 @@
 IRsend irsend;
 #define TOPBIT 0x800000
 
-unsigned long data1=0xB24D5F;
+unsigned long data1=0xB24D5F;//24 C, F2
 unsigned long data11=0xA040BF;
-unsigned long data2=0xB24D3F;
+unsigned long data2=0xB24D3F;//24C F3
 unsigned long data21=0xC040BF;
-unsigned long data3=0xB24D9F;
+unsigned long data3=0xB24D9F;//24C F1
 unsigned long data31=0x6040BF;
-  
+unsigned long data4=0xB24D7B;//OFF
+unsigned long data41=0x84E01F;
+unsigned long data5=0xB24D3F;//25 C F3
+unsigned long data51=0xC0C03F;
+unsigned long data6=0xB24D9F;//25 C F1
+unsigned long data61=0x60C03F;
+unsigned long data7=0xB24D5F;//25 C F2
+unsigned long data71=0xA0C03F;
 // the setup function runs once when you press reset or power the board
 void setup() 
 {
